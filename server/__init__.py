@@ -126,3 +126,9 @@ def atualizar_sensores():
         if valor := json.get(parametro):
             sensores[parametro] = valor
     return '', 204
+
+if __name__ == '__main__':
+    #app.run(host='0.0.0.0', port=5000)
+    #app.run(host='192.168.15.125', port=5000)
+    #app.run(host='172.28.98.246')
+    app.run(host='172.29.240.1')
