@@ -25,39 +25,6 @@ motores = {
     },
     # International Standard ISO 8601 where Monday is the first day 
     # Sunday as the seventh and final day
-    "despertador": {
-        "ligado": False,
-        "dias_semana": {
-            1: {
-                "hora": 00,
-                "minuto": 00
-            },
-            2: {
-                "hora": 00,
-                "minuto": 00
-            },
-            3: {
-                "hora": 00,
-                "minuto": 00
-            },
-            4: {
-                "hora": 00,
-                "minuto": 00
-            },
-            5: {
-                "hora": 00,
-                "minuto": 00
-            },
-            6: {
-                "hora": 00,
-                "minuto": 00
-            },
-            7: {
-                "hora": 00,
-                "minuto": 00
-            }
-        }
-    },
     "iluminacao": {
         "manual": False,
         "economia_inteligente": False,
@@ -100,13 +67,50 @@ sensores = {
 
 @app.route("/")
 def hello_world():
-    return "Hello, World!"
+    return """<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página inicio</title>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    "
+  >
+    <h1 style="max-width: 50%; text-align: center">
+      API Arduino, use /motores ou /sensores por favor.
+    </h1>
+  </body>
+</html>
+"""
 
 
 @app.route('/motores')
 def get_motores():
     return jsonify(motores)
 
+
+@app.route('/motores', methods=['POST'])
+def atualizar_motores():
+    json:dict = request.get_json()
+    for chave, valor in json.items():
+        if chave in motores.keys():
+            if type(valor) == dict:
+                for subchave, subvalor in valor.items():
+                    if subchave == "luz_horario" and chave == "iluminacao":
+                        for horario, cor in subvalor.items():
+                            if horario.isnumeric() and int(horario) in motores["iluminacao"]["luz_horario"].keys():
+                                motores["iluminacao"]["luz_horario"][int(horario)] = cor
+                    elif subchave in motores[chave].keys():
+                        motores[chave][subchave] = subvalor
+    return '', 204
 
 @app.route('/sensores')
 def get_sensores():
