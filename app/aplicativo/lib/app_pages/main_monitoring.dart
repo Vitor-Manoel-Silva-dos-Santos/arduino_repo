@@ -11,8 +11,6 @@ class HomeMonitoring extends StatefulWidget {
 }
 
 class _HomeMonitoringState extends State<HomeMonitoring> {
-  double valor = 0; //! Arrumar
-
   @override
   Widget build(BuildContext context) {
     return Container(

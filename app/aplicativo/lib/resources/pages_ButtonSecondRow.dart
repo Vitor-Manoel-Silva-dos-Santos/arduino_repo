@@ -1,5 +1,6 @@
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 // ignore: camel_case_types
 class Pages_ButtonSecondRow extends StatefulWidget {

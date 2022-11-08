@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class pagesButtonsFistRow extends StatefulWidget {
   pagesButtonsFistRow({Key? key}) : super(key: key);
