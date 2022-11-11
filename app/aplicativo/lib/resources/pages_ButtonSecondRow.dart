@@ -1,6 +1,8 @@
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
 import 'package:flutter/material.dart';
+import 'pages_ButtonFirstRow.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 // ignore: camel_case_types
 class Pages_ButtonSecondRow extends StatefulWidget {
@@ -10,7 +12,36 @@ class Pages_ButtonSecondRow extends StatefulWidget {
   State<Pages_ButtonSecondRow> createState() => _Pages_ButtonSecondRowState();
 }
 
+// ignore: camel_case_types
 class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
+  String _respostaUmidade = "0";
+  _recuperarDadosServidor() async {
+    print("texto test");
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+
+    print("status = ${respostaSensores.statusCode}");
+    if (respostaSensores.statusCode == 200) {
+      Map<String, dynamic> retorno = json.decode(respostaSensores.body);
+      int umidade = retorno["umidade"];
+      print("umidade = $umidade");
+      setState(() {
+        _respostaUmidade = "$umidade";
+      });
+    } else {
+      print(
+          "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _recuperarDadosServidor();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -52,7 +83,7 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ClimateControl()));
+                            builder: (context) => const ClimateControl()));
                   });
                 },
                 child: Column(
@@ -77,14 +108,13 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                         child: Column(
                           children: [
                             Row(
-                              children: const [
-                                //! Alterar com API
+                              children: [
                                 Text(
-                                  "48",
-                                  style: TextStyle(
+                                  _respostaUmidade,
+                                  style: const TextStyle(
                                       fontSize: 40, color: Colors.white),
                                 ),
-                                Text(
+                                const Text(
                                   "%",
                                   style: TextStyle(
                                       fontSize: 40, color: Colors.white),
@@ -95,7 +125,6 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                               padding: const EdgeInsets.only(top: 20),
                               child: Row(
                                 children: const [
-                                  //! Alterar com API
                                   Text(
                                     "Nível: ",
                                     style: TextStyle(

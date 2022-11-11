@@ -2,6 +2,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:aplicacao_unip/resources/pages_ButtonFirstRow.dart';
 import 'package:aplicacao_unip/resources/pages_ButtonSecondRow.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomeMonitoring extends StatefulWidget {
   const HomeMonitoring({Key? key}) : super(key: key);
@@ -11,6 +12,29 @@ class HomeMonitoring extends StatefulWidget {
 }
 
 class _HomeMonitoringState extends State<HomeMonitoring> {
+  var wifi = 0;
+  _recuperarDadosServidor() async {
+    print("texto test wifi");
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+    print("status = ${respostaSensores.statusCode}");
+    if (respostaSensores.statusCode == 200) {
+      wifi = 1;
+    } else {
+      print(
+          "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _recuperarDadosServidor();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,7 +98,7 @@ class _HomeMonitoringState extends State<HomeMonitoring> {
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.only(top: 50, bottom: 20),
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -109,11 +133,11 @@ class _HomeMonitoringState extends State<HomeMonitoring> {
                           ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
+                              children: [
                                 Icon(
                                   Icons.wifi,
                                   color: Colors.white,
-                                ),
+                                )
                               ])
                         ],
                       ),
