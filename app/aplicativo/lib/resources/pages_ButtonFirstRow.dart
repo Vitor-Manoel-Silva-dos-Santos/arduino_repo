@@ -1,6 +1,10 @@
 // ignore: file_names
+// ignore_for_file: avoid_print
+
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class pagesButtonsFistRow extends StatefulWidget {
   pagesButtonsFistRow({Key? key}) : super(key: key);
@@ -9,11 +13,42 @@ class pagesButtonsFistRow extends StatefulWidget {
   State<pagesButtonsFistRow> createState() => _pagesButtonsFistRow();
 }
 
+// ignore: camel_case_types
 class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
+  
+  String _respostaTemperatura = "0";
+  double _valorRespostaTemperatura = 0;
+
+  _recuperarDadosServidor() async {
+    print("texto test");
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+
+    print("status = ${respostaSensores.statusCode}");
+    if (respostaSensores.statusCode == 200) {
+      Map<String, dynamic> retorno = json.decode(respostaSensores.body);
+      int temperatura = retorno["temperatura"];
+      print("temperatura = $temperatura");
+      setState(() {
+        _valorRespostaTemperatura = temperatura.toDouble();
+        _respostaTemperatura = "$temperatura";
+      });
+    } else {
+      print(
+          "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _recuperarDadosServidor();
+  }
+
   @override
   Widget build(BuildContext context) {
-    //! Alterar com API
-    double valor = 20;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -78,14 +113,13 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Row(
-                              children: const [
-                               //! Alterar com API
+                              children: [
                                 Text(
-                                  "24",
-                                  style: TextStyle(
+                                  _respostaTemperatura,
+                                  style: const TextStyle(
                                       fontSize: 40, color: Colors.white),
                                 ),
-                                Text(
+                                const Text(
                                   "°c",
                                   style: TextStyle(
                                       fontSize: 40, color: Colors.white),
@@ -95,7 +129,7 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                           ],
                         )),
                     SizedBox(
-                        child: SliderTheme(
+                      child: SliderTheme(
                         data: const SliderThemeData(
                           trackHeight: 3,
                           disabledThumbColor: Colors.white,
@@ -104,14 +138,13 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                         ),
                         child: Slider(
                           thumbColor: Colors.white,
-                          value: valor,
+                          value: _valorRespostaTemperatura,
                           onChanged: null,
                           min: 0,
-                          max: 70,
+                          max: 60,
                         ),
                       ),
-                      ),
-                    
+                    ),
                   ],
                 ),
               ),
