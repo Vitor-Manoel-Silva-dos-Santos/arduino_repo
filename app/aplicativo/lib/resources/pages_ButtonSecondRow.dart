@@ -125,16 +125,20 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                               padding: const EdgeInsets.only(top: 20),
                               child: Row(
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Nível: ",
                                     style: TextStyle(
                                         fontSize: 15, color: Colors.white),
                                   ),
                                   Text(
-                                    _respostaUmidade <= 20? "Baixo": _respostaUmidade > 20 && _respostaUmidade < 60? "Normal" : "Alto",
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white))
-                  
+                                      _respostaUmidade <= 20
+                                          ? "Baixo"
+                                          : _respostaUmidade > 20 &&
+                                                  _respostaUmidade < 60
+                                              ? "Normal"
+                                              : "Alto",
+                                      style: const TextStyle(
+                                          fontSize: 15, color: Colors.white))
                                 ],
                               ),
                             )
