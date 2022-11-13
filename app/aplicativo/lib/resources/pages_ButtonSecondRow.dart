@@ -14,7 +14,7 @@ class Pages_ButtonSecondRow extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
-  String _respostaUmidade = "0";
+  int _respostaUmidade = 0;
   _recuperarDadosServidor() async {
     print("texto test");
     var url =
@@ -28,7 +28,7 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
       int umidade = retorno["umidade"];
       print("umidade = $umidade");
       setState(() {
-        _respostaUmidade = "$umidade";
+        _respostaUmidade = umidade;
       });
     } else {
       print(
@@ -110,7 +110,7 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                             Row(
                               children: [
                                 Text(
-                                  _respostaUmidade,
+                                  "$_respostaUmidade",
                                   style: const TextStyle(
                                       fontSize: 40, color: Colors.white),
                                 ),
@@ -124,17 +124,17 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
                               child: Row(
-                                children: const [
+                                children: [
                                   Text(
                                     "Nível: ",
                                     style: TextStyle(
                                         fontSize: 15, color: Colors.white),
                                   ),
                                   Text(
-                                    "Normal",
+                                    _respostaUmidade <= 20? "Baixo": _respostaUmidade > 20 && _respostaUmidade < 60? "Normal" : "Alto",
                                     style: TextStyle(
-                                        fontSize: 15, color: Colors.white),
-                                  )
+                                        fontSize: 15, color: Colors.white))
+                  
                                 ],
                               ),
                             )
