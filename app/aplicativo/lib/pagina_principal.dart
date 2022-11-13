@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'app_pages/main_monitoring.dart';
 import 'app_pages/climate_control.dart';
-import 'app_pages/home_control.dart';
-import 'app_pages/bedroom.dart';
+import 'app_pages/iluminacao.dart';
+import 'app_pages/despertador.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.lightbulb_outline),
                 label: "lightbulb outline"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.king_bed_outlined), label: "bed outlined"),
+                icon: Icon(Icons.access_alarm), label: "bed outlined"),
           ],
           iconSize: 20,
           selectedIconTheme: const IconThemeData(size: 30),
@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           HomeMonitoring(),
           ClimateControl(),
-          HomeControl(),
-          Bedroom(),
+          iluminacao(),
+          Despertador(),
         ],
         sizing: StackFit.expand,
       ),

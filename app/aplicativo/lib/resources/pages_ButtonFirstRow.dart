@@ -2,6 +2,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
+import 'package:aplicacao_unip/app_pages/iluminacao.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,10 +16,9 @@ class pagesButtonsFistRow extends StatefulWidget {
 
 // ignore: camel_case_types
 class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
-  
   String _respostaTemperatura = "0";
   double _valorRespostaTemperatura = 0;
-
+  String _respostaSensorIluminacao = "Escuro";
   _recuperarDadosServidor() async {
     print("texto test");
     var url =
@@ -29,12 +29,22 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
     print("status = ${respostaSensores.statusCode}");
     if (respostaSensores.statusCode == 200) {
       Map<String, dynamic> retorno = json.decode(respostaSensores.body);
+      int iluminacao = retorno["iluminacao"];
       int temperatura = retorno["temperatura"];
       print("temperatura = $temperatura");
       setState(() {
         _valorRespostaTemperatura = temperatura.toDouble();
         _respostaTemperatura = "$temperatura";
       });
+      if (iluminacao <= 600) {
+        setState(
+          () {
+            _respostaSensorIluminacao = "Claro";
+          },
+        );
+      } else {
+        _respostaSensorIluminacao = "Escuro";
+      }
     } else {
       print(
           "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
@@ -188,7 +198,7 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ClimateControl()));
+                              builder: (context) => iluminacao()));
                     });
                   },
                   child: Column(
@@ -214,11 +224,10 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Row(
-                                children: const [
+                                children: [
                                   Text(
-                                    //! Alterar com API
-                                    "Escuro",
-                                    style: TextStyle(
+                                    _respostaSensorIluminacao,
+                                    style: const TextStyle(
                                         fontSize: 30, color: Colors.white),
                                   ),
                                 ],
@@ -227,16 +236,19 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: const [
+                                children: [
                                   Text(
-                                    //! Alterar com API
-                                    "Luz \nApagada",
-                                    style: TextStyle(
+                                    _respostaSensorIluminacao == "Claro"
+                                        ? "Luz apagada"
+                                        : "Luz acesa",
+                                    style: const TextStyle(
                                         fontSize: 15, color: Colors.white),
                                   ),
                                   Icon(
                                       color: Colors.white,
-                                      Icons.lightbulb_outlined)
+                                      _respostaSensorIluminacao == "Claro"
+                                          ? Icons.lightbulb_outlined
+                                          : Icons.lightbulb)
                                 ],
                               ),
                             ],
