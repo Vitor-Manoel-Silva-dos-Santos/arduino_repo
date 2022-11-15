@@ -12,7 +12,7 @@ class HomeMonitoring extends StatefulWidget {
 }
 
 class _HomeMonitoringState extends State<HomeMonitoring> {
-  var wifi = 0;
+  int wifi = 0;
   _recuperarDadosServidor() async {
     print("texto test wifi");
     var url =
@@ -21,7 +21,10 @@ class _HomeMonitoringState extends State<HomeMonitoring> {
     respostaSensores = await http.get(url);
     print("status = ${respostaSensores.statusCode}");
     if (respostaSensores.statusCode == 200) {
-      wifi = 1;
+      setState(() {
+        wifi = 1;
+      });
+      print("Resposta do servidor bem sucedida!");
     } else {
       print(
           "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
@@ -98,7 +101,7 @@ class _HomeMonitoringState extends State<HomeMonitoring> {
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.only(top: 20, bottom: 20),
+                      padding: const EdgeInsets.only(top: 40, bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -135,7 +138,7 @@ class _HomeMonitoringState extends State<HomeMonitoring> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Icon(
-                                  Icons.wifi,
+                                  wifi == 1 ? Icons.wifi : Icons.wifi_off,
                                   color: Colors.white,
                                 )
                               ])
