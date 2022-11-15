@@ -1,4 +1,4 @@
-#Tue Nov 15 11:40:25 BRT 2022
-base.0=C\:\\Users\\josue\\Desktop\\AppAPS\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Tue Nov 15 13:23:21 BRT 2022
+base.0=C\:\\Users\\josue\\Desktop\\AppAPS\\arduino_repo-1\\app\\aplicativo\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
