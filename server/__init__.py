@@ -83,7 +83,7 @@ def hello_world():
     "
   >
     <h1 style="max-width: 50%; text-align: center">
-      API Arduino, use /motores ou /sensores por favor.
+      API arduino, use /motores ou /sensores por favor.
     </h1>
   </body>
 </html>
