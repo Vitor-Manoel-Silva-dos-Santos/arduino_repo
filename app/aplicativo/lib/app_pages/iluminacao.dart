@@ -19,7 +19,6 @@ class _iluminacaoState extends State<iluminacao> {
       ),
       backgroundColor: const Color.fromARGB(255, 1, 2, 19),
       body: Container(
-        constraints: const BoxConstraints.expand(),
         padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -29,6 +28,15 @@ class _iluminacaoState extends State<iluminacao> {
               Color.fromARGB(255, 1, 2, 19),
                 Color.fromARGB(255, 3, 3, 39),
             ])),
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.white,
+                  width: 30,
+                  height: 30,
+                )
+              ],
+            ),
       ),
     );
   }
