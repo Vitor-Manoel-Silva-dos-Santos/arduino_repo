@@ -1,3 +1,4 @@
+import 'package:aplicacao_unip/buttons/switch_items.dart';
 import 'package:flutter/material.dart';
 
 class ClimateControl extends StatefulWidget {
@@ -8,10 +9,13 @@ class ClimateControl extends StatefulWidget {
 }
 
 class _ClimateControlState extends State<ClimateControl> {
+  bool isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Center(child: Text("Climatização")),
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 2, 5, 54),
       ),
@@ -19,7 +23,6 @@ class _ClimateControlState extends State<ClimateControl> {
       body: Container(
         constraints: const BoxConstraints.expand(),
         padding: const EdgeInsets.all(10),
-
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -28,6 +31,7 @@ class _ClimateControlState extends State<ClimateControl> {
               Color.fromARGB(255, 2, 5, 54),
               Color.fromARGB(255, 3, 3, 39),
             ])),
+        child: MultiSwitch(),
       ),
     );
   }

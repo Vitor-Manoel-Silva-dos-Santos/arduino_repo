@@ -1,9 +1,0 @@
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/icudtl.dat
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/flutter_windows.dll
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
-C:/Users/josue/Desktop/AppAPS/arduino_repo/app/aplicativo/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
