@@ -1,4 +1,4 @@
-import 'package:aplicacao_unip/buttons/switch_items.dart';
+import 'package:aplicacao_unip/resources/switch_items.dart';
 import 'package:flutter/material.dart';
 
 class ClimateControl extends StatefulWidget {

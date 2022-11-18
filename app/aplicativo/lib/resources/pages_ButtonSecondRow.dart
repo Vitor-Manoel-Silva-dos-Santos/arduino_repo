@@ -1,4 +1,5 @@
 import 'package:aplicacao_unip/app_pages/climate_control.dart';
+import 'package:aplicacao_unip/app_pages/despertador.dart';
 import 'package:flutter/material.dart';
 import 'pages_ButtonFirstRow.dart';
 import 'package:http/http.dart' as http;
@@ -187,7 +188,7 @@ class _Pages_ButtonSecondRowState extends State<Pages_ButtonSecondRow> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ClimateControl()));
+                              builder: (context) => Despertador()));
                     });
                   },
                   child: Column(
