@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\windows\CMakeFiles\f08c55598220cd7c4625a82eb071906f\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7A004BD4-1515-3590-8AEF-1A243E233549}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

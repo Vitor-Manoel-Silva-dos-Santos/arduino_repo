@@ -42,7 +42,7 @@ class _iluminacaoState extends State<iluminacao> {
     }
   }
 
-  double ?valorSlider;
+  double? valorSlider;
   final Shader linearGradient = LinearGradient(
     colors: <Color>[Colors.purple, Colors.white],
   ).createShader(Rect.fromLTWH(0.0, 0.0, 320.0, 80.0));
@@ -114,20 +114,20 @@ class _iluminacaoState extends State<iluminacao> {
                           ),
                           child: Container(
                             decoration: BoxDecoration(
-                                                          //!alterar com lógica
+                              //!alterar com lógica
 
                               color: colors[0],
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-
-
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
                             ),
                             width: 30,
                             height: 30,
-                            
                           ),
                         ),
                         const Image(
-                          image: AssetImage('images/color-circle.png'),
+                          image: AssetImage('images/camaleao.png'),
+                          height: 100,
+                          width: 100,
                         ),
                         Container(
                           child: Row(
@@ -258,8 +258,8 @@ class _iluminacaoState extends State<iluminacao> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(60))
-                          ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(60))),
                           width: 270,
                           height: 80,
                           child: ElevatedButton(

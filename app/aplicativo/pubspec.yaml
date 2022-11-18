@@ -35,6 +35,7 @@ flutter:
     - images/ventilador.png
     - images/galo.png
     - images/imagem3d.jpg
+    - images/camaleao.png
   fonts:
     - family: avenir
       fonts:

@@ -13,23 +13,23 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\android\app\src\debug\AndroidManifest.xml:7:5-66
-15-->C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\android\app\src\debug\AndroidManifest.xml:7:22-64
+15-->C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\android\app\src\debug\AndroidManifest.xml:7:5-66
+15-->C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\android\app\src\debug\AndroidManifest.xml:7:22-64
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-16-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-81
-16-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-78
+16-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-81
+16-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-78
 17    <uses-permission android:name="android.permission.VIBRATE" />
-17-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-66
-17-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-63
+17-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-66
+17-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-63
 18    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-18-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-81
-18-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-78
+18-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-81
+18-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-78
 19    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-19-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:12:5-79
-19-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:12:22-76
+19-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:12:5-79
+19-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:12:22-76
 20    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-20-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-77
-20-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-74
+20-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-77
+20-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-74
 21
 22    <application
 23        android:name="android.app.Application"
@@ -72,31 +72,31 @@
 59            android:value="2" />
 60
 61        <receiver
-61-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-18:40
+61-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-18:40
 62            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
-62-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-97
+62-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-97
 63            android:exported="false" />
-63-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
+63-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-37
 64        <receiver
-64-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:9-28:20
+64-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:19:9-28:20
 65            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
-65-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-101
+65-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:20:13-101
 66            android:exported="false" >
-66-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-37
+66-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-37
 67            <intent-filter>
-67-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-27:29
+67-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-27:29
 68                <action android:name="android.intent.action.BOOT_COMPLETED" />
-68-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:23:17-79
-68-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:23:25-76
+68-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:23:17-79
+68-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:23:25-76
 69                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-69-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-84
-69-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-81
+69-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:24:17-84
+69-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:24:25-81
 70                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-70-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:25:17-82
-70-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:25:25-79
+70-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:25:17-82
+70-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:25:25-79
 71                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
-71-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:26:17-82
-71-->[:flutter_local_notifications] C:\workspace\aplicativo_versao3\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:26:25-79
+71-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:26:17-82
+71-->[:flutter_local_notifications] C:\workspace\aplicativo_versao4\arduino_repo\app\aplicativo\build\flutter_local_notifications\intermediates\merged_manifest\debug\AndroidManifest.xml:26:25-79
 72            </intent-filter>
 73        </receiver>
 74

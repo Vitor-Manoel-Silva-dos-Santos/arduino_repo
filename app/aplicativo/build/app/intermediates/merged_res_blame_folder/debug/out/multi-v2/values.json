@@ -1,8 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\workspace\\aplicativo_versao3\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\workspace\\aplicativo_versao4\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
+                {
+                    "source": "C:\\workspace\\aplicativo_versao4\\arduino_repo\\app\\aplicativo\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,832",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "483,998"
+                    },
+                    "to": {
+                        "startLines": "101,106",
+                        "startColumns": "4,4",
+                        "startOffsets": "5967,6275",
+                        "endLines": "105,108",
+                        "endColumns": "12,12",
+                        "endOffsets": "6270,6439"
+                    }
+                },
                 {
                     "source": "C:\\Users\\vieir\\.gradle\\caches\\transforms-3\\e0c414601472373f45eb984833a825a1\\transformed\\media-1.1.0\\res\\values\\values.xml",
                     "from": {
@@ -56,25 +75,6 @@
                         "endLines": "7,8,9,10,79,134,138,287,304,312",
                         "endColumns": "11,59,51,44,59,24,24,24,24,24",
                         "endOffsets": "289,349,401,446,4832,8136,8333,17294,18408,18801"
-                    }
-                },
-                {
-                    "source": "C:\\workspace\\aplicativo_versao3\\arduino_repo\\app\\aplicativo\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "176,832",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "483,998"
-                    },
-                    "to": {
-                        "startLines": "101,106",
-                        "startColumns": "4,4",
-                        "startOffsets": "5967,6275",
-                        "endLines": "105,108",
-                        "endColumns": "12,12",
-                        "endOffsets": "6270,6439"
                     }
                 }
             ]

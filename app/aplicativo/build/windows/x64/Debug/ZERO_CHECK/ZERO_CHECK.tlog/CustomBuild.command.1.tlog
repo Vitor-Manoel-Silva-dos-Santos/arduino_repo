@@ -1,0 +1,10 @@
+^C:\WORKSPACE\APLICATIVO_VERSAO4\ARDUINO_REPO\APP\APLICATIVO\BUILD\WINDOWS\CMAKEFILES\6EC994E56A1BD67E55E2F5864BD0C8FB\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/workspace/aplicativo_versao4/arduino_repo/app/aplicativo/windows -BC:/workspace/aplicativo_versao4/arduino_repo/app/aplicativo/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/workspace/aplicativo_versao4/arduino_repo/app/aplicativo/build/windows/projeto_unip.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
