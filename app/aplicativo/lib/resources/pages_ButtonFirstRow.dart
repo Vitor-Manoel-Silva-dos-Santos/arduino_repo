@@ -16,6 +16,7 @@ class pagesButtonsFistRow extends StatefulWidget {
 
 // ignore: camel_case_types
 class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
+  int _respostaRuim = 0;
   String _respostaTemperatura = "0";
   double _valorRespostaTemperatura = 0;
   String _respostaSensorIluminacao = "Escuro";
@@ -46,6 +47,7 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
         _respostaSensorIluminacao = "Escuro";
       }
     } else {
+      _respostaRuim = 1;
       print(
           "Resposta ruim do servidor com código: ${respostaSensores.statusCode}");
     }
@@ -54,7 +56,7 @@ class _pagesButtonsFistRow extends State<pagesButtonsFistRow> {
   @override
   void initState() {
     super.initState();
-    _recuperarDadosServidor();
+      _recuperarDadosServidor();
   }
 
   @override
