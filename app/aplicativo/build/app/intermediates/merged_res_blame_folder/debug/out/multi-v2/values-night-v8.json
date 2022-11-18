@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\workspace\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\josue\\Documents\\Programming\\Mobile\\Flutter\\APS\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\workspace\\arduino_repo\\app\\aplicativo\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\josue\\Documents\\Programming\\Mobile\\Flutter\\APS\\arduino_repo\\app\\aplicativo\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
