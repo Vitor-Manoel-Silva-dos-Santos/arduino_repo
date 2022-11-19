@@ -20,6 +20,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
   double _sliderValueUV = 50.0; //humidadeinicialventilador
   double _sliderValueUJ = 50.0; //humidadeinicialjanela
 
+  bool val1 = true;
+  bool val2 = true;
+  bool val3 = true;
+
   String _respostaTemperatura = "0";
   double _valorRespostaTemperatura = 0;
   int _respostaUmidade = 0;
@@ -172,8 +176,12 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         ],
                       ),
                       Switch(
-                        onChanged: (bool value) {},
-                        value: true,
+                        value: val1,
+                        onChanged: (bool state) {
+                          setState(() {
+                            val1 = state;
+                          });
+                        },
                         activeColor: Colors.white,
                       ),
                     ],
@@ -299,7 +307,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFCCBC),
                         ),
-                        onPressed: () {},
+                        onPressed: val1 ? () {} : () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -368,8 +376,12 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         ],
                       ),
                       Switch(
-                        onChanged: (bool value) {},
-                        value: true,
+                        value: val2,
+                        onChanged: (bool state) {
+                          setState(() {
+                            val2 = state;
+                          });
+                        },
                         activeColor: Colors.white,
                       ),
                     ],
@@ -568,8 +580,12 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         ],
                       ),
                       Switch(
-                        onChanged: (bool value) {},
-                        value: true,
+                        value: val3,
+                        onChanged: (bool state) {
+                          setState(() {
+                            val3 = state;
+                          });
+                        },
                         activeColor: Colors.white,
                       ),
                     ],
@@ -695,7 +711,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFECB3),
                         ),
-                        onPressed: () {},
+                        onPressed: val3 ? () {} : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
