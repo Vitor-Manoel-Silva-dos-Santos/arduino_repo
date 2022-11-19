@@ -1,4 +1,0 @@
-#Fri Nov 18 23:37:49 BRT 2022
-base.0=/home/gapigo/workspace/arduino_repo/app/aplicativo/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

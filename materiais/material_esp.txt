@@ -1,1 +1,0 @@
-https://www.filipeflop.com/blog/como-utilizar-uma-api-no-esp8266-nodemcu-boas-praticas-para-integracoes/
