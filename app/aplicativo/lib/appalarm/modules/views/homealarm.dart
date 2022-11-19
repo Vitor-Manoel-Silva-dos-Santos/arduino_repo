@@ -53,7 +53,7 @@ class _HomeAlarmState extends State<HomeAlarm> {
                   );
               },
             ),
-          ),
+          )
         ],
       ),
     );
