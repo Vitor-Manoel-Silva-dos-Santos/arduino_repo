@@ -3,7 +3,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:aplicacao_unip/appalarm/modules/views/alarm_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 class MultiSwitch extends StatefulWidget {
   const MultiSwitch({super.key});
@@ -19,6 +21,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
   double _sliderValueUU = 50.0; //humidadeinicialhumidificador
   double _sliderValueUV = 50.0; //humidadeinicialventilador
   double _sliderValueUJ = 50.0; //humidadeinicialjanela
+
+  bool val1 = true;
+  bool val2 = true;
+  bool val3 = true;
 
   String _respostaTemperatura = "0";
   double _valorRespostaTemperatura = 0;
@@ -55,6 +61,28 @@ class _MultiSwitchState extends State<MultiSwitch> {
   void initState() {
     super.initState();
     _recuperarDadosServidor();
+  }
+
+  postData({required double temperatura, required double umidade}) async {
+    print("funcao postdata");
+    var client = http.Client();
+    try {
+      var response = await client.post(
+          Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'}),
+          body: {
+            'janela': {
+              'aberta': 'true',
+              'manual': 'false',
+              'temperatura_de_ativacao': temperatura,
+              'umidade_de_ativacao': 'umidade',
+            },
+          });
+      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+      var uri = Uri.parse(decodedResponse['uri'] as String);
+      print(await client.get(uri));
+    } finally {
+      client.close();
+    }
   }
 
   @override
@@ -171,10 +199,28 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           ),
                         ],
                       ),
-                      Switch(
-                        onChanged: (bool value) {},
-                        value: true,
-                        activeColor: Colors.white,
+                      SizedBox(
+                        height: 35,
+                        child: LiteRollingSwitch(
+                          value: val1,
+                          textOn: "Manual",
+                          textOff: "Automático",
+                          colorOn: Color.fromARGB(255, 175, 23, 23),
+                          colorOff: Color.fromARGB(255, 231, 123, 123),
+                          iconOn: Icons.lock,
+                          iconOff: Icons.lock_open_rounded,
+                          textSize: 10.0,
+                          width: 105,
+                          onChanged: (bool state) {
+                            setState(() {
+                              print("botaswitch");
+                              val1 = state;
+                            });
+                          },
+                          onDoubleTap: () {},
+                          onSwipe: () {},
+                          onTap: () {},
+                        ),
                       ),
                     ],
                   ),
@@ -211,6 +257,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                     onChanged: (double val) {
                       setState(() {
                         _sliderValueTJ = val;
+                        print("botaoslide1: ${_sliderValueTJ}");
                       });
                     },
                   ),
@@ -266,6 +313,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                     onChanged: (double val) {
                       setState(() {
                         _sliderValueUJ = val;
+                        print("botaoslide2: ${_sliderValueUJ}");
                       });
                     },
                   ),
@@ -299,16 +347,19 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFCCBC),
                         ),
-                        onPressed: () {},
+                        onPressed: !val1
+                            ? () {
+                                print("onPressed");
+                                postData(
+                                    temperatura: _sliderValueTJ,
+                                    umidade: _sliderValueUJ);
+                                print(_sliderValueTJ);
+                                print(_sliderValueUJ);
+                              }
+                            : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Icon(Icons.lock, color: Colors.black),
-                              ],
-                            ),
                             Icon(Icons.window, color: Colors.black),
                             Text(
                               'Aberta',
@@ -367,10 +418,27 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           ),
                         ],
                       ),
-                      Switch(
-                        onChanged: (bool value) {},
-                        value: true,
-                        activeColor: Colors.white,
+                      SizedBox(
+                        height: 35,
+                        child: LiteRollingSwitch(
+                          value: val2,
+                          textOn: "Manual",
+                          textOff: "Automático",
+                          colorOn: Color.fromARGB(255, 64, 46, 233),
+                          colorOff: Color.fromARGB(255, 54, 163, 206),
+                          iconOn: Icons.lock,
+                          iconOff: Icons.lock_open_rounded,
+                          textSize: 10.0,
+                          width: 105,
+                          onChanged: (bool state) {
+                            setState(() {
+                              val2 = state;
+                            });
+                          },
+                          onDoubleTap: () {},
+                          onSwipe: () {},
+                          onTap: () {},
+                        ),
                       ),
                     ],
                   ),
@@ -495,16 +563,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFB3E5FC),
                         ),
-                        onPressed: () {},
+                        onPressed: !val2 ? () {} : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Icon(Icons.lock, color: Colors.black),
-                              ],
-                            ),
                             Image(
                               image: AssetImage('images/ventilador.png'),
                               width: 25,
@@ -567,10 +629,27 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           ),
                         ],
                       ),
-                      Switch(
-                        onChanged: (bool value) {},
-                        value: true,
-                        activeColor: Colors.white,
+                      SizedBox(
+                        height: 35,
+                        child: LiteRollingSwitch(
+                          value: val3,
+                          textOn: "Manual",
+                          textOff: "Automático",
+                          colorOn: Color.fromARGB(164, 172, 172, 36),
+                          colorOff: Color.fromARGB(255, 231, 228, 28),
+                          iconOn: Icons.lock,
+                          iconOff: Icons.lock_open_rounded,
+                          textSize: 10.0,
+                          width: 105,
+                          onChanged: (bool state) {
+                            setState(() {
+                              val3 = state;
+                            });
+                          },
+                          onDoubleTap: () {},
+                          onSwipe: () {},
+                          onTap: () {},
+                        ),
                       ),
                     ],
                   ),
@@ -695,16 +774,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFECB3),
                         ),
-                        onPressed: () {},
+                        onPressed: !val3 ? () {} : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Icon(Icons.lock, color: Colors.black),
-                              ],
-                            ),
                             Image(
                               image: AssetImage('images/umidificador.png'),
                               width: 25,
