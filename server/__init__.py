@@ -2,10 +2,12 @@
 import json
 from flask import Flask, jsonify, request
 from threading import Semaphore
+from flask_cors import CORS
 
 sem = Semaphore()
 
 app = Flask(__name__)
+CORS(app)
 
 def create_file():
     server_json = {"motores": 
