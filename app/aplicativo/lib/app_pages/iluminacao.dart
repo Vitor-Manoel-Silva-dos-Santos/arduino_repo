@@ -1,7 +1,54 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+Future<http.Response> createSensorPost() async {
+var url = Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
+
+  var headers = {
+    "content-type": "application/json",
+  };
+  final Map<String,dynamic>userData={
+      "iluminacao" : 90
+    };
+    final response = await http.post(Uri.parse('http://arduino-unip.herokuapp.com/sensores'),
+    headers: headers,
+     body: jsonEncode(userData),
+     );
+  http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+    print(respostaSensores.body);
+    print("status = ${respostaSensores.statusCode}");
+  print(response.statusCode);
+  
+  if (response.statusCode == 204) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    print("Body: " + response.body);
+    return response;
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    throw Exception('Failed to create album.');
+  }
+}
+
+class SensorPost {
+  final int id;
+  final String title;
+
+  const SensorPost({required this.id, required this.title});
+
+  factory SensorPost.fromJson(Map<String, dynamic> json) {
+    return SensorPost(
+      id: json['id'],
+      title: json['title'],
+    );
+  }
+}
 
 class iluminacao extends StatefulWidget {
   const iluminacao({super.key});
@@ -16,15 +63,14 @@ class _iluminacaoState extends State<iluminacao> {
     _recuperarDadosServidor();
   }
 
-  List colors = [Colors.amber, Colors.blue];
-  String _respostaSensorIluminacao = "";
+  Future<SensorPost>? _futureAlbum;
   _recuperarDadosServidor() async {
     print("texto test");
     var url =
         Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
     http.Response respostaSensores;
     respostaSensores = await http.get(url);
-
+    print(respostaSensores.body);
     print("status = ${respostaSensores.statusCode}");
     if (respostaSensores.statusCode == 200) {
       Map<String, dynamic> retorno = json.decode(respostaSensores.body);
@@ -33,6 +79,7 @@ class _iluminacaoState extends State<iluminacao> {
       setState(
         () {
           porcentagem = iluminacao / 9;
+          valorSlider = iluminacao / 9;
           _respostaSensorIluminacao = porcentagem.toStringAsPrecision(3);
         },
       );
@@ -42,10 +89,16 @@ class _iluminacaoState extends State<iluminacao> {
     }
   }
 
-  double ?valorSlider;
   final Shader linearGradient = LinearGradient(
     colors: <Color>[Colors.purple, Colors.white],
   ).createShader(Rect.fromLTWH(0.0, 0.0, 320.0, 80.0));
+  List colors = [Colors.amber, Colors.blue];
+  String textoBotao = "Ligado";
+  String _respostaSensorIluminacao = "";
+  int valorLigado = 0;
+  int valorDesligado = 0;
+  double valorSlider = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,13 +151,13 @@ class _iluminacaoState extends State<iluminacao> {
                           ]),
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
-                    width: 360,
+                    width: MediaQuery.of(context).size.width - 50,
                     height: 60,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(right: 30),
+                          margin: const EdgeInsets.only(right: 40),
                           alignment: Alignment.center,
                           width: 40,
                           height: 40,
@@ -114,20 +167,20 @@ class _iluminacaoState extends State<iluminacao> {
                           ),
                           child: Container(
                             decoration: BoxDecoration(
-                                                          //!alterar com lógica
+                              //!alterar com lógica
 
                               color: colors[0],
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-
-
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
                             ),
                             width: 30,
                             height: 30,
-                            
                           ),
                         ),
                         const Image(
-                          image: AssetImage('images/color-circle.png'),
+                          image: AssetImage('images/camaleao.png'),
+                          height: 100,
+                          width: 100,
                         ),
                         Container(
                           child: Row(
@@ -164,9 +217,9 @@ class _iluminacaoState extends State<iluminacao> {
                   ),
                   Container(
                     margin: const EdgeInsets.only(
-                        top: 20, left: 20, right: 20, bottom: 20),
+                        top: 20, left: 20, right: 10, bottom: 20),
                     padding: const EdgeInsets.all(10),
-                    width: 350,
+                    width: 330,
                     decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         boxShadow: [
@@ -216,13 +269,13 @@ class _iluminacaoState extends State<iluminacao> {
                             )
                           ],
                         ),
-                        Text('30%',
+                        Text('${_respostaSensorIluminacao}%',
                             style: TextStyle(
                               foreground: Paint()..shader = linearGradient,
                               fontSize: 50,
                               fontWeight: FontWeight.w700,
                             )),
-                        Text('Iluminação de ativação',
+                        const Text('Iluminação de ativação',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 10,
@@ -230,36 +283,41 @@ class _iluminacaoState extends State<iluminacao> {
                             )),
                         Slider.adaptive(
                           activeColor: Color.fromARGB(255, 185, 59, 207),
+                          min: 0,
                           max: 100,
-                          value: 40,
+                          value: valorSlider,
                           onChanged: (double value) => {value++},
                           thumbColor: Color.fromARGB(255, 185, 59, 207),
                           inactiveColor: Colors.grey,
                           divisions: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              "0%",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
+                        Container(
+                          margin: const EdgeInsets.only(top: 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                "0%",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "100%",
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
+                              Text(
+                                "100%",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 12,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         Container(
+                          margin: EdgeInsets.only(top: 20),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(60))
-                          ),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(60))),
                           width: 270,
                           height: 80,
                           child: ElevatedButton(
@@ -271,15 +329,20 @@ class _iluminacaoState extends State<iluminacao> {
                                     MaterialStatePropertyAll<Color>(
                                         Color.fromARGB(255, 199, 53, 224)),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  createSensorPost();
+                                });
+                              },
                               child: Column(
+                                //!alterar
                                 children: [
                                   Icon(
                                     Icons.flash_on,
                                     color: Colors.black,
                                   ),
                                   Text(
-                                    "Ligado",
+                                    textoBotao,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       color: Colors.black,
@@ -298,6 +361,21 @@ class _iluminacaoState extends State<iluminacao> {
           ),
         ),
       ),
+    );
+  }
+
+  FutureBuilder<SensorPost> buildFutureBuilder() {
+    return FutureBuilder<SensorPost>(
+      future: _futureAlbum,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.title);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
