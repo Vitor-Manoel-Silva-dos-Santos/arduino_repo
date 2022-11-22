@@ -6,24 +6,24 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 Future<http.Response> createSensorPost() async {
-var url = Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
+  var url =
+      Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
 
   var headers = {
     "content-type": "application/json",
   };
-  final Map<String,dynamic>userData={
-      "iluminacao" : 90
-    };
-    final response = await http.post(Uri.parse('http://arduino-unip.herokuapp.com/sensores'),
+  final Map<String, dynamic> userData = {"iluminacao": 90};
+  final response = await http.post(
+    Uri.parse('http://arduino-unip.herokuapp.com/sensores'),
     headers: headers,
-     body: jsonEncode(userData),
-     );
+    body: jsonEncode(userData),
+  );
   http.Response respostaSensores;
-    respostaSensores = await http.get(url);
-    print(respostaSensores.body);
-    print("status = ${respostaSensores.statusCode}");
+  respostaSensores = await http.get(url);
+  print(respostaSensores.body);
+  print("status = ${respostaSensores.statusCode}");
   print(response.statusCode);
-  
+
   if (response.statusCode == 204) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
@@ -36,19 +36,7 @@ var url = Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'});
   }
 }
 
-class SensorPost {
-  final int id;
-  final String title;
 
-  const SensorPost({required this.id, required this.title});
-
-  factory SensorPost.fromJson(Map<String, dynamic> json) {
-    return SensorPost(
-      id: json['id'],
-      title: json['title'],
-    );
-  }
-}
 
 class iluminacao extends StatefulWidget {
   const iluminacao({super.key});
@@ -63,7 +51,6 @@ class _iluminacaoState extends State<iluminacao> {
     _recuperarDadosServidor();
   }
 
-  Future<SensorPost>? _futureAlbum;
   _recuperarDadosServidor() async {
     print("texto test");
     var url =
@@ -361,21 +348,6 @@ class _iluminacaoState extends State<iluminacao> {
           ),
         ),
       ),
-    );
-  }
-
-  FutureBuilder<SensorPost> buildFutureBuilder() {
-    return FutureBuilder<SensorPost>(
-      future: _futureAlbum,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Text(snapshot.data!.title);
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
-        }
-
-        return const CircularProgressIndicator();
-      },
     );
   }
 }
