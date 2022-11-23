@@ -63,25 +63,123 @@ class _MultiSwitchState extends State<MultiSwitch> {
     _recuperarDadosServidor();
   }
 
-  postData({required double temperatura, required double umidade}) async {
-    print("funcao postdata");
-    var client = http.Client();
-    try {
-      var response = await client.post(
-          Uri.https('arduino-unip.herokuapp.com', '/sensores', {'q': '{http}'}),
-          body: {
-            'janela': {
-              'aberta': 'true',
-              'manual': 'false',
-              'temperatura_de_ativacao': temperatura,
-              'umidade_de_ativacao': 'umidade',
-            },
-          });
-      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-      var uri = Uri.parse(decodedResponse['uri'] as String);
-      print(await client.get(uri));
-    } finally {
-      client.close();
+  Future<http.Response> createJanelaPost(
+      {required double temperatura,
+      required double umidade,
+      required bool versao}) async {
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
+
+    var headers = {
+      "content-type": "application/json",
+    };
+    final Map<String, dynamic> userData = {
+      "janela": <String, dynamic>{
+        "manual": versao,
+        "temperatura_de_ativacao": temperatura,
+        "umidade_de_ativacao": umidade
+      }
+    };
+    final response = await http.post(
+      Uri.parse('https://arduino-unip.herokuapp.com/motores'),
+      headers: headers,
+      body: jsonEncode(userData),
+    );
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+    print(respostaSensores.body);
+    print("status = ${respostaSensores.statusCode}");
+    print(response.statusCode);
+
+    if (response.statusCode == 204) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print("Body: " + response.body);
+      return response;
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
+    }
+  }
+
+  Future<http.Response> createVentiladorPost(
+      {required double temperatura,
+      required double umidade,
+      required bool versao}) async {
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
+
+    var headers = {
+      "content-type": "application/json",
+    };
+    final Map<String, dynamic> userData = {
+      "ventilador": <String, dynamic>{
+        "manual": versao,
+        "temperatura_de_ativacao": temperatura,
+        "umidade_de_ativacao": umidade
+      }
+    };
+    final response = await http.post(
+      Uri.parse('https://arduino-unip.herokuapp.com/motores'),
+      headers: headers,
+      body: jsonEncode(userData),
+    );
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+    print(respostaSensores.body);
+    print("status = ${respostaSensores.statusCode}");
+    print(response.statusCode);
+
+    if (response.statusCode == 204) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print("Body: " + response.body);
+      return response;
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
+    }
+  }
+
+  Future<http.Response> createUmidificadorPost(
+      {required double temperatura,
+      required double umidade,
+      required bool versao}) async {
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
+
+    var headers = {
+      "content-type": "application/json",
+    };
+    final Map<String, dynamic> userData = {
+      "umidificador": <String, dynamic>{
+        "manual": versao,
+        "temperatura_de_ativacao": temperatura,
+        "umidade_de_ativacao": umidade
+      }
+    };
+    final response = await http.post(
+      Uri.parse('https://arduino-unip.herokuapp.com/motores'),
+      headers: headers,
+      body: jsonEncode(userData),
+    );
+    http.Response respostaSensores;
+    respostaSensores = await http.get(url);
+    print(respostaSensores.body);
+    print("status = ${respostaSensores.statusCode}");
+    print(response.statusCode);
+
+    if (response.statusCode == 204) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print("Body: " + response.body);
+      return response;
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to create album.');
     }
   }
 
@@ -349,12 +447,15 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         ),
                         onPressed: !val1
                             ? () {
-                                print("onPressed");
-                                postData(
-                                    temperatura: _sliderValueTJ,
-                                    umidade: _sliderValueUJ);
-                                print(_sliderValueTJ);
-                                print(_sliderValueUJ);
+                                setState(() {
+                                  print("onPressed");
+                                  createJanelaPost(
+                                      temperatura: _sliderValueTJ,
+                                      umidade: _sliderValueUJ,
+                                      versao: val1);
+                                  print(_sliderValueTJ);
+                                  print(_sliderValueUJ);
+                                });
                               }
                             : null,
                         child: Column(
@@ -563,7 +664,19 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFB3E5FC),
                         ),
-                        onPressed: !val2 ? () {} : null,
+                        onPressed: !val2
+                            ? () {
+                                setState(() {
+                                  print("onPressed");
+                                  createVentiladorPost(
+                                      temperatura: _sliderValueTV,
+                                      umidade: _sliderValueUV,
+                                      versao: val2);
+                                  print(_sliderValueTV);
+                                  print(_sliderValueUV);
+                                });
+                              }
+                            : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -774,7 +887,19 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFECB3),
                         ),
-                        onPressed: !val3 ? () {} : null,
+                        onPressed: !val3
+                            ? () {
+                                setState(() {
+                                  print("onPressed");
+                                  createUmidificadorPost(
+                                      temperatura: _sliderValueTU,
+                                      umidade: _sliderValueUU,
+                                      versao: val3);
+                                  print(_sliderValueTU);
+                                  print(_sliderValueUU);
+                                });
+                              }
+                            : null,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
