@@ -22,9 +22,13 @@ class _MultiSwitchState extends State<MultiSwitch> {
   double _sliderValueUV = 50.0; //humidadeinicialventilador
   double _sliderValueUJ = 50.0; //humidadeinicialjanela
 
-  bool val1 = true;
-  bool val2 = true;
-  bool val3 = true;
+  bool _val1 = true;
+  bool _val2 = true;
+  bool _val3 = true;
+
+  bool _energia1 = true;
+  bool _energia2 = true;
+  bool _energia3 = true;
 
   String _respostaTemperatura = "0";
   double _valorRespostaTemperatura = 0;
@@ -57,16 +61,81 @@ class _MultiSwitchState extends State<MultiSwitch> {
     }
   }
 
+  _botoesServidor() async {
+    print("texto test botao");
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
+    http.Response respostaBotoes;
+    respostaBotoes = await http.get(url);
+
+    print("status = ${respostaBotoes.statusCode}");
+    if (respostaBotoes.statusCode == 200) {
+      Map<String, dynamic> retorno = json.decode(respostaBotoes.body);
+      bool botao1 = retorno["janela"]["manual"];
+      bool botao2 = retorno["ventilador"]["manual"];
+      bool botao3 = retorno["umidificador"]["manual"];
+      print("botao1 = $botao1");
+      setState(() {
+        _val1 = botao1;
+        print("valor1 servidor = ${_val1}");
+      });
+      print("botao2 = $botao2");
+      setState(() {
+        _val2 = botao2;
+      });
+      print("botao3 = $botao3");
+      setState(() {
+        _val3 = botao3;
+      });
+    } else {
+      print(
+          "Resposta ruim do servidor com código: ${respostaBotoes.statusCode}");
+    }
+  }
+
+  _dadosEnergia() async {
+    print("texto test botao");
+    var url =
+        Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
+    http.Response respostaBotoes;
+    respostaBotoes = await http.get(url);
+
+    print("status = ${respostaBotoes.statusCode}");
+    if (respostaBotoes.statusCode == 200) {
+      Map<String, dynamic> retorno = json.decode(respostaBotoes.body);
+      bool energia1 = retorno["janela"]["aberta"];
+      bool energia2 = retorno["ventilador"]["ligado"];
+      bool energia3 = retorno["umidificador"]["ligado"];
+      print("energia1 = $energia1");
+      setState(() {
+        _energia1 = energia1;
+      });
+      print("botao2 = $energia2");
+      setState(() {
+        _energia2 = energia2;
+      });
+      print("botao3 = $energia3");
+      setState(() {
+        _energia3 = energia3;
+      });
+    } else {
+      print(
+          "Resposta ruim do servidor com código: ${respostaBotoes.statusCode}");
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _recuperarDadosServidor();
+    _dadosEnergia();
+    _botoesServidor();
   }
 
   Future<http.Response> createJanelaPost(
-      {required double temperatura,
-      required double umidade,
-      required bool versao}) async {
+      {double temperatura = 20,
+      double umidade = 50,
+      bool versao = true}) async {
     var url =
         Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
 
@@ -104,9 +173,9 @@ class _MultiSwitchState extends State<MultiSwitch> {
   }
 
   Future<http.Response> createVentiladorPost(
-      {required double temperatura,
-      required double umidade,
-      required bool versao}) async {
+      {double temperatura = 20,
+      double umidade = 50,
+      bool versao = true}) async {
     var url =
         Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
 
@@ -144,9 +213,9 @@ class _MultiSwitchState extends State<MultiSwitch> {
   }
 
   Future<http.Response> createUmidificadorPost(
-      {required double temperatura,
-      required double umidade,
-      required bool versao}) async {
+      {double temperatura = 20,
+      double umidade = 50,
+      bool versao = true}) async {
     var url =
         Uri.https('arduino-unip.herokuapp.com', '/motores', {'q': '{http}'});
 
@@ -300,7 +369,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       SizedBox(
                         height: 35,
                         child: LiteRollingSwitch(
-                          value: val1,
+                          value: _val1,
                           textOn: "Manual",
                           textOff: "Automático",
                           colorOn: Color.fromARGB(255, 175, 23, 23),
@@ -312,7 +381,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           onChanged: (bool state) {
                             setState(() {
                               print("botaswitch");
-                              val1 = state;
+                              _val1 = state;
+                              if (_val1 == true) {
+                                createJanelaPost();
+                              }
                             });
                           },
                           onDoubleTap: () {},
@@ -445,14 +517,14 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFCCBC),
                         ),
-                        onPressed: !val1
+                        onPressed: !_val1
                             ? () {
                                 setState(() {
                                   print("onPressed");
                                   createJanelaPost(
                                       temperatura: _sliderValueTJ,
                                       umidade: _sliderValueUJ,
-                                      versao: val1);
+                                      versao: _val1);
                                   print(_sliderValueTJ);
                                   print(_sliderValueUJ);
                                 });
@@ -463,7 +535,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           children: [
                             Icon(Icons.window, color: Colors.black),
                             Text(
-                              'Aberta',
+                              _energia3 == true ? 'Aberta' : 'Fechada',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
@@ -522,7 +594,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       SizedBox(
                         height: 35,
                         child: LiteRollingSwitch(
-                          value: val2,
+                          value: _val2,
                           textOn: "Manual",
                           textOff: "Automático",
                           colorOn: Color.fromARGB(255, 64, 46, 233),
@@ -533,7 +605,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           width: 105,
                           onChanged: (bool state) {
                             setState(() {
-                              val2 = state;
+                              _val2 = state;
+                              if (_val2 == true) {
+                                createVentiladorPost();
+                              }
                             });
                           },
                           onDoubleTap: () {},
@@ -664,14 +739,14 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFB3E5FC),
                         ),
-                        onPressed: !val2
+                        onPressed: !_val2
                             ? () {
                                 setState(() {
                                   print("onPressed");
                                   createVentiladorPost(
                                       temperatura: _sliderValueTV,
                                       umidade: _sliderValueUV,
-                                      versao: val2);
+                                      versao: _val2);
                                   print(_sliderValueTV);
                                   print(_sliderValueUV);
                                 });
@@ -686,7 +761,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                               height: 25,
                             ),
                             Text(
-                              'Ligado',
+                              _energia2 == true ? 'Ligado' : 'Desligado',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
@@ -745,7 +820,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       SizedBox(
                         height: 35,
                         child: LiteRollingSwitch(
-                          value: val3,
+                          value: _val3,
                           textOn: "Manual",
                           textOff: "Automático",
                           colorOn: Color.fromARGB(164, 172, 172, 36),
@@ -756,7 +831,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
                           width: 105,
                           onChanged: (bool state) {
                             setState(() {
-                              val3 = state;
+                              _val3 = state;
+                              if (_val3 == true) {
+                                createUmidificadorPost();
+                              }
                             });
                           },
                           onDoubleTap: () {},
@@ -887,19 +965,19 @@ class _MultiSwitchState extends State<MultiSwitch> {
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFFFECB3),
                         ),
-                        onPressed: !val3
-                            ? () {
+                        onPressed: _val3
+                            ? null
+                            : () {
                                 setState(() {
                                   print("onPressed");
                                   createUmidificadorPost(
                                       temperatura: _sliderValueTU,
                                       umidade: _sliderValueUU,
-                                      versao: val3);
+                                      versao: _val3);
                                   print(_sliderValueTU);
                                   print(_sliderValueUU);
                                 });
-                              }
-                            : null,
+                              },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -909,7 +987,7 @@ class _MultiSwitchState extends State<MultiSwitch> {
                               height: 25,
                             ),
                             Text(
-                              'Ligado',
+                              _energia3 == true ? 'Ligado' : 'Desligado',
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
