@@ -1,4 +1,4 @@
-#Tue Nov 22 20:32:53 BRT 2022
+#Tue Nov 22 23:43:06 BRT 2022
 base.0=C\:\\workspace\\aplicativo_versao6\\arduino_repo\\app\\aplicativo\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
