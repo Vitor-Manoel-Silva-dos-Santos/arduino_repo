@@ -26,6 +26,10 @@ class _MultiSwitchState extends State<MultiSwitch> {
   bool _val2 = true;
   bool _val3 = true;
 
+  int _controlval1 = 0;
+  int _controlval2 = 0;
+  int _controlval3 = 0;
+
   bool _energia1 = true;
   bool _energia2 = true;
   bool _energia3 = true;
@@ -77,6 +81,12 @@ class _MultiSwitchState extends State<MultiSwitch> {
       print("botao1 = $botao1");
       setState(() {
         _val1 = botao1;
+        if (botao1 == true) {
+          _controlval1 = 1;
+        } else {
+          _controlval1 = 0;
+        }
+
         print("valor1 servidor = ${_val1}");
       });
       print("botao2 = $botao2");
@@ -122,14 +132,6 @@ class _MultiSwitchState extends State<MultiSwitch> {
       print(
           "Resposta ruim do servidor com código: ${respostaBotoes.statusCode}");
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _recuperarDadosServidor();
-    _dadosEnergia();
-    _botoesServidor();
   }
 
   Future<http.Response> createJanelaPost(
@@ -253,6 +255,13 @@ class _MultiSwitchState extends State<MultiSwitch> {
   }
 
   @override
+  void initState() {
+    _recuperarDadosServidor();
+    _dadosEnergia();
+    _botoesServidor();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -368,28 +377,24 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       ),
                       SizedBox(
                         height: 35,
-                        child: LiteRollingSwitch(
-                          value: _val1,
-                          textOn: "Manual",
-                          textOff: "Automático",
-                          colorOn: Color.fromARGB(255, 175, 23, 23),
-                          colorOff: Color.fromARGB(255, 231, 123, 123),
-                          iconOn: Icons.lock,
-                          iconOff: Icons.lock_open_rounded,
-                          textSize: 10.0,
-                          width: 105,
-                          onChanged: (bool state) {
-                            setState(() {
-                              print("botaswitch");
-                              _val1 = state;
-                              if (_val1 == true) {
-                                createJanelaPost();
-                              }
-                            });
-                          },
-                          onDoubleTap: () {},
-                          onSwipe: () {},
-                          onTap: () {},
+                        child: Row(
+                          children: [
+                            Switch(
+                              value: _val1,
+                              activeColor: Color.fromARGB(255, 252, 116, 106),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  print("botaswitch");
+                                  _val1 = state;
+                                  if (_val1 == true) {
+                                    createJanelaPost();
+                                  }
+                                });
+                              },
+                            ),
+                            Text(_val1 == true ? "Manual" : "Automático",
+                                style: TextStyle(fontSize: 10)),
+                          ],
                         ),
                       ),
                     ],
@@ -593,27 +598,24 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       ),
                       SizedBox(
                         height: 35,
-                        child: LiteRollingSwitch(
-                          value: _val2,
-                          textOn: "Manual",
-                          textOff: "Automático",
-                          colorOn: Color.fromARGB(255, 64, 46, 233),
-                          colorOff: Color.fromARGB(255, 54, 163, 206),
-                          iconOn: Icons.lock,
-                          iconOff: Icons.lock_open_rounded,
-                          textSize: 10.0,
-                          width: 105,
-                          onChanged: (bool state) {
-                            setState(() {
-                              _val2 = state;
-                              if (_val2 == true) {
-                                createVentiladorPost();
-                              }
-                            });
-                          },
-                          onDoubleTap: () {},
-                          onSwipe: () {},
-                          onTap: () {},
+                        child: Row(
+                          children: [
+                            Switch(
+                              value: _val2,
+                              activeColor: Color.fromARGB(255, 47, 30, 199),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  print("botaswitch");
+                                  _val2 = state;
+                                  if (_val2 == true) {
+                                    createVentiladorPost();
+                                  }
+                                });
+                              },
+                            ),
+                            Text(_val2 == true ? "Manual" : "Automático",
+                                style: TextStyle(fontSize: 10)),
+                          ],
                         ),
                       ),
                     ],
@@ -819,27 +821,24 @@ class _MultiSwitchState extends State<MultiSwitch> {
                       ),
                       SizedBox(
                         height: 35,
-                        child: LiteRollingSwitch(
-                          value: _val3,
-                          textOn: "Manual",
-                          textOff: "Automático",
-                          colorOn: Color.fromARGB(164, 172, 172, 36),
-                          colorOff: Color.fromARGB(255, 231, 228, 28),
-                          iconOn: Icons.lock,
-                          iconOff: Icons.lock_open_rounded,
-                          textSize: 10.0,
-                          width: 105,
-                          onChanged: (bool state) {
-                            setState(() {
-                              _val3 = state;
-                              if (_val3 == true) {
-                                createUmidificadorPost();
-                              }
-                            });
-                          },
-                          onDoubleTap: () {},
-                          onSwipe: () {},
-                          onTap: () {},
+                        child: Row(
+                          children: [
+                            Switch(
+                              value: _val3,
+                              activeColor: Color.fromARGB(255, 226, 210, 68),
+                              onChanged: (bool state) {
+                                setState(() {
+                                  print("botaswitch");
+                                  _val3 = state;
+                                  if (_val3 == true) {
+                                    createUmidificadorPost();
+                                  }
+                                });
+                              },
+                            ),
+                            Text(_val3 == true ? "Manual" : "Automático",
+                                style: TextStyle(fontSize: 10)),
+                          ],
                         ),
                       ),
                     ],

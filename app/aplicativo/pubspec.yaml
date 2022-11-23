@@ -7,6 +7,8 @@ environment:
   sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
+  permission_handler: ^10.2.0
+  on_audio_query: ^2.6.1
   lite_rolling_switch: ^1.0.0
   http: ^0.13.5
   responsive_framework: ^0.2.0

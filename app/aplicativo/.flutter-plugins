@@ -1,3 +1,9 @@
 # This is a generated file; do not edit or check into version control.
 flutter_local_notifications=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_local_notifications-9.9.1\\
+on_audio_query=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\on_audio_query-2.6.1\\
+on_audio_query_web=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\on_audio_query_web-1.3.2+2\\
+permission_handler=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler-10.2.0\\
+permission_handler_android=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_android-10.2.0\\
+permission_handler_apple=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_apple-9.0.7\\
+permission_handler_windows=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_windows-0.1.2\\
 sqflite=c:\\development\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sqflite-2.2.0+3\\

@@ -156,6 +156,7 @@ int id text 0x7f05004d
 int id text2 0x7f05004e
 int id time 0x7f05004f
 int id title 0x7f050050
+int id view_tree_view_model_store_owner 0x7f050051
 int integer cancel_button_image_alpha 0x7f060000
 int integer status_bar_notification_info_maxnum 0x7f060001
 int layout custom_dialog 0x7f070000
