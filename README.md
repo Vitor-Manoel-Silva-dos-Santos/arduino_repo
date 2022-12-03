@@ -115,6 +115,9 @@ desejavamos, além de entregar alta performance ao modelo final.
     <td align="center">
       <a href="https://github.com/M4theusVieir4" target="_blank"> <img src="https://avatars.githubusercontent.com/u/117297483?v=4" height= "100" width= "100"/></a>
     </td>
+    <td align="center">
+      <a href="https://github.com/JosueTeo220" target="_blank"> <img src="https://avatars.githubusercontent.com/u/69473461?v=4" height= "100" width= "100"/></a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -125,6 +128,9 @@ desejavamos, além de entregar alta performance ao modelo final.
     </td>
     <td>
       <a href = "http://www.linkedin.com/in/matheus-vieira-lopes-de-souza-2a9306255" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/> </a>
+    </td>
+    <td>
+      <a href = "https://www.linkedin.com/in/josueteobaldotech220/" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/> </a>
     </td>
   </tr>
 </table>
