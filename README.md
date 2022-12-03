@@ -103,5 +103,28 @@ como framework de desenvolvimento, pois reúne todas as facilidades que
 desejavamos, além de entregar alta performance ao modelo final.
 </p>
 
-
-
+<h5 href = "#autor"> Autores: </h5>
+<table border="0">
+  <tr>   
+    <td align="center">
+      <a href="https://github.com/Vitor-Manoel-Silva-dos-Santos" target="_blank"> <img src="https://avatars.githubusercontent.com/u/83611513?v=4" height= "100" width= "100"/></a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/gapigo" target="_blank"> <img src="https://avatars.githubusercontent.com/u/70778388?v=4" height= "100" width= "100"/></a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/M4theusVieir4" target="_blank"> <img src="https://avatars.githubusercontent.com/u/117297483?v=4" height= "100" width= "100"/></a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href = "https://www.linkedin.com/in/vitor-manoel-s-santos/" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/> </a>
+    </td>
+    <td>
+      <a href = "https://github.com/gapigo" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/> </a>
+    </td>
+    <td>
+      <a href = "http://www.linkedin.com/in/matheus-vieira-lopes-de-souza-2a9306255" target="_blank"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/> </a>
+    </td>
+  </tr>
+</table>
