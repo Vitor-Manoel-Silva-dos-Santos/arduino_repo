@@ -1,4 +1,4 @@
-<h1 align = "center"> :house: :computer: Projetos Domus :computer: :house: </h1>
+<h1 align = "center"> :house: :computer: Projeto Domus :computer: :house: </h1>
 
 <h4> Introdução ao projeto: </h4>
 <p align  = "justify"> Cada vez mais tem se falado em traduzir os avanços tecnológicos em casas ou um 
@@ -35,5 +35,73 @@ aplicativo dele. </p>
 <p align  = "justify"> <b>:bulb: Iluminação: </b>Construimos um sistema de iluminação utilizando um led rgb para simulação, podendo então controlar diferentes cores no ambiente via aplicativo. </p>
 
 <p align  = "justify"> <b>:sleeping: Cama: </b>Desenvolvemos uma cama com o foco de iluminação em periodos noturnos, a mesma possui um sensor que ao levantar da cama durante a madruga (periodos noturnos), a iluminação (moderada) ativa automaticamente, auxiliando o usuario a caminhar com visão sobre a casa. </p>
+
+<h4> Ferramentas e componentes: </h4>
+<h5> Softwares utilizados: </h5>
+
+<p align  = "justify"> <b>Jira: </b> Utilizado para organização das tarefas a serem feitas devido à sua facilidade e objetividade quanto à adoção de 
+uma metodologia como o Scrum. </p>
+
+<p align  = "justify"> <b>Tinkercad: </b>Este programa possui ferramentas e componentes eletrônicos (incluindo 
+microcontroladores) prontos para prototipagem de circuitos eletrônicos. Além disso, possui a facilidade e vantagem de escrever e simular o código do projeto utilizando a  metodologia de programação em blocos e código. </p>
+
+<p align  = "justify"> <b>Sketchup: </b>O programa possui todas as ferramentas de desenhos técnicos. O software 
+em si traz ferramentas e utilidades para tornar a construção de projetos mais fáceis. 
+Além das ferramentas originais do software, pode-se fazer a instalação de 
+ferramentas e projetos prontos adicionais, sendo, então, uma plataforma 
+opensource. </p>
+
+<p align  = "justify"> <b>Figma: </b>O Figma é uma ferramenta de design versátil bastante popular entre os 
+designers. Ele é uma das maiores referências no mercado hoje quando o assunto é 
+construção de interfaces digitais combinando a acessibilidade da web com as 
+funcionalidades de um aplicativo nativo. Sendo muito usado para a prototipação para 
+websites e aplicativos, seja wireframes ou designs com a cara do produto final.</p>
+
+<h4> Hardware: </h4>
+<h5> Placas de prótotipagem: </h5>
+<p align  = "justify"> <b>Arduino: </b>Arduino é uma plataforma de prototipagem eletrônica utilizada por estudantes, 
+empresas e profissionais de diversas áreas, além de ser visto como um hobby. O 
+objetivo do Arduino é facilitar a prototipagem eletrônica, barata e flexível.</p>
+
+<p align  = "justify"> <b>Esp32: </b>é altamente integrado com interruptores de antena 
+embutidos, balun de RF, amplificador de potência, amplificador de recepção de 
+baixo ruído, filtros e módulos de gerenciamento de energia. Possuindo, também, 
+suporte híbrido para wifi e bluetooth.</p>
+
+<h5> Sensores e componentes: </h5>
+<ol>
+<li>Relé Mini 5v 10a Com 5 Terminais</li>
+<li>Motor Dc Com Reducao Met. Reversivel Jgy370 12v 150 Rpm 07kg</li>
+<li>Módulo Sensor De Luz Ldr Digital/analógico</li>
+<li>Kit Mini Umidificador De Ar Usb</li>
+<li>Sensor De Temperatura E Umidade Dht11</li>
+<li>Sensor de Chuva</li>
+<li>Led RGB</li>
+<li>...</li>
+</ol>
+
+<h4> Codificação: </h4>
+
+<p align  = "justify"> <b>Arduino: </b> A linguagem utilizada 
+nesse microcontrolador é uma versão com pequenas modificações da linguagem 
+C++. O código usado no projeto foi escrito para cumprir a função de tratar os dados 
+lidos pelos sensores e atribuir uma ação adequada para os equipamentos da casa.</p>
+
+<p align  = "justify"> <b>Esp32: </b> A linguagem utilizada 
+nesse microcontrolador é uma versão com pequenas modificações da linguagem 
+C++. O código usado no projeto foi desenvolvido com o objetivo de receber informações do arduino e enviar para a API, da mesma forma receber informações de outra API e transmitir para o Arduino.</p>
+
+<p align  = "justify"> <b>Servidor: </b> Para gerenciar a comunicação entre o aplicativo e o Arduino, foi construído 
+uma aplicação utilizando o micro framework Flask da linguagem Python, usando a 
+plataforma do Heroku para manter em cloud o micro serviço de uma API REST no 
+formato JSON, definindo quais informações serão trafegadas por meio de chaves.
+</p>
+<p align  = "justify"> <b>Interface: </b> Para integrar todas as funcionalidades do projeto, sentimos a necessidade 
+desenvolver aplicações, de forma rápida, multiplataforma e com simplicidade ao 
+programar. Com o objetivo de solucionar estas questões, utilizamos o Flutter 
+como framework de desenvolvimento, pois reúne todas as facilidades que 
+desejavamos, além de entregar alta performance ao modelo final.
+</p>
+
 
 
